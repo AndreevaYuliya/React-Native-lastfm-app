@@ -1,5 +1,5 @@
 const COLORS = {
-    screenDefault: '#FFFFFF',
+  screenDefault: '#FFFFFF',
 };
 
 export default COLORS;

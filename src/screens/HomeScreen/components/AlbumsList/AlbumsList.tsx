@@ -7,19 +7,21 @@ import { AlbumType } from '../../../../services/apiTypes';
 import AlbumsListItem from '../AlbumsListItem';
 
 type Props = {
-    albums: AlbumType[];
-}
+  albums: AlbumType[];
+};
 
 const AlbumsList = (props: Props) => {
-    const { albums = [] } = props;
+  const { albums = [] } = props;
 
-    return (
-        <FlatList
-            data={albums}
-            keyExtractor={(_, index) => index.toString()}
-            renderItem={({ item, index }) => <AlbumsListItem album={item} index={index} />}
-        />
-    );
+  return (
+    <FlatList
+      data={albums}
+      keyExtractor={(_, index) => index.toString()}
+      renderItem={({ item, index }) => (
+        <AlbumsListItem album={item} index={index} />
+      )}
+    />
+  );
 };
 
 export default AlbumsList;

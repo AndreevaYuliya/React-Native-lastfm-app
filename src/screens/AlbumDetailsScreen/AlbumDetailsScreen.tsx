@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { useQuery } from 'react-query';
 
@@ -11,38 +11,47 @@ import CustomPressable from '../../components/CustomPressable';
 
 import { fetchArtistBio } from '../../services/api';
 
+import { AlbumDetailsScreenRouteProp } from '../../App';
+
 import styles from './styles';
 
-const AlbumDetailsScreen = ({ route }) => {
-    const navigation = useNavigation();
+const AlbumDetailsScreen = () => {
+  const navigation = useNavigation();
+  const route: AlbumDetailsScreenRouteProp = useRoute();
 
-    const { artistName } = route.params;
+  const { artistName } = route.params;
 
-    const { data: bio, isLoading, error } = useQuery(
-        ['artistBio', artistName],
-        () => fetchArtistBio(artistName),
-        { enabled: artistName.length > 0 }
-    );
+  const {
+    data: bio,
+    isLoading,
+    error,
+  } = useQuery(['artistBio', artistName], () => fetchArtistBio(artistName), {
+    enabled: artistName.length > 0,
+  });
 
-    return (
-        <ScreenView>
-            <View style={styles.header}>
-                <CustomPressable title="< Go Back" buttonStyles={styles.goBackButton} onPress={navigation.goBack} />
+  return (
+    <ScreenView>
+      <View style={styles.header}>
+        <CustomPressable
+          title="< Go Back"
+          buttonStyles={styles.goBackButton}
+          onPress={navigation.goBack}
+        />
 
-                <Text style={styles.title}>Artist Bio</Text>
-            </View>
+        <Text style={styles.title}>Artist Bio</Text>
+      </View>
 
-            <ScrollView style={styles.screenScrollContainer}>
-                {
-                    isLoading
-                    ? <Text>Loading...</Text>
-                    : error
-                    ? <Text>Error fetching artist bio</Text>
-                    : <Text>{bio}</Text>
-                }
-            </ScrollView>
-        </ScreenView>
-    );
+      <ScrollView style={styles.screenScrollContainer}>
+        {isLoading ? (
+          <Text>Loading...</Text>
+        ) : error ? (
+          <Text>Error fetching artist bio</Text>
+        ) : (
+          <Text>{bio}</Text>
+        )}
+      </ScrollView>
+    </ScreenView>
+  );
 };
 
 export default AlbumDetailsScreen;

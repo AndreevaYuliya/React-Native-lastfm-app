@@ -1,19 +1,19 @@
 import { makeAutoObservable } from 'mobx';
 
 class AuthStore {
-    isLoggedIn = false;
+  isLoggedIn = false;
 
-    constructor() {
-        makeAutoObservable(this);
-    }
+  constructor() {
+    makeAutoObservable(this);
+  }
 
-    login() {
-        this.isLoggedIn = true;
-    }
+  login() {
+    this.isLoggedIn = true;
+  }
 
-    logout() {
-        this.isLoggedIn = false;
-    }
+  logout() {
+    this.isLoggedIn = false;
+  }
 }
 
 const authStore = new AuthStore();

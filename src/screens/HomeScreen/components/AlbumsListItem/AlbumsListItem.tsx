@@ -6,44 +6,43 @@ import { Image, Text } from 'react-native';
 
 import CustomPressable from '../../../../components/CustomPressable';
 
-import styles from './styles';
 import { AlbumType } from '../../../../services/apiTypes';
 
+import { AlbumScreenNavigationProp } from '../../../../App';
+
+import styles from './styles';
+
 type Props = {
-    album: AlbumType;
-    index: number;
-}
+  album: AlbumType;
+  index: number;
+};
 
 const AlbumsList = (props: Props) => {
-    const { album, index } = props;
+  const { album, index } = props;
 
-    const navigation = useNavigation();
+  const navigation: AlbumScreenNavigationProp = useNavigation();
 
-    const onAlbumPress = () => {
-        navigation.navigate('AlbumScreen', { albumId: album.mbid, albumName: album.name, artistName: album.artist.name });
-    };
+  const onAlbumPress = () => {
+    navigation.navigate('AlbumScreen', {
+      albumId: album.mbid,
+      albumName: album.name,
+      artistName: album.artist.name,
+    });
+  };
 
-    return (
-        <CustomPressable
-            buttonStyles={styles.container}
-            onPress={onAlbumPress}
-        >
-            <Text style={styles.number}>{index + 1}.</Text>
+  return (
+    <CustomPressable buttonStyles={styles.container} onPress={onAlbumPress}>
+      <Text style={styles.number}>{index + 1}.</Text>
 
-            {
-                album?.image?.[2]?.['#text']
-                ? (
-                    <Image
-                        source={{ uri: album.image[2]['#text'] }}
-                        style={styles.image}
-                    />
-                )
-                : <Text style={styles.noImageText}>No Image</Text>
-            }
+      {album?.image?.[2]?.['#text'] ? (
+        <Image source={{ uri: album.image[2]['#text'] }} style={styles.image} />
+      ) : (
+        <Text style={styles.noImageText}>No Image</Text>
+      )}
 
-            <Text>{album.name}</Text>
-        </CustomPressable>
-    );
+      <Text>{album.name}</Text>
+    </CustomPressable>
+  );
 };
 
 export default AlbumsList;

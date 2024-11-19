@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginVertical: 10,
-    },
-    number: {
-        fontWeight: 'bold',
-    },
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
+  },
+  number: {
+    fontWeight: 'bold',
+  },
 });
