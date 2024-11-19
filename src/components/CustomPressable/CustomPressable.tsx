@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Pressable, Text, StyleProp, ViewStyle } from 'react-native';
+import { Pressable, Text, StyleProp, ViewStyle, TextStyle } from 'react-native';
 
 import styles from './styles';
 
 type Props = {
     title?: string;
-    titleStyles?: StyleProp<ViewStyle>;
+    titleStyles?: StyleProp<TextStyle>;
     buttonStyles?: StyleProp<ViewStyle>;
     pressedOpacity?: number;
     onPress: () => void;

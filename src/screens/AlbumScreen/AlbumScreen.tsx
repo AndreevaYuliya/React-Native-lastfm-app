@@ -1,18 +1,19 @@
 import React from 'react';
 
+import { useNavigation } from '@react-navigation/native';
+
 import { useQuery } from 'react-query';
 
 import { View, Text } from 'react-native';
 
 import ScreenView from '../../components/ScreenView';
+import CustomPressable from '../../components/CustomPressable';
 
 import { fetchAlbumTracks } from '../../services/api';
 
 import TracksList from './components/TracksList';
 
 import styles from './styles';
-import CustomPressable from '../../components/CustomPressable';
-import { useNavigation } from '@react-navigation/native';
 
 const AlbumScreen = ({ route }) => {
     const navigation = useNavigation();
